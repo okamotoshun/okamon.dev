@@ -1,0 +1,7 @@
+.split:hover {
+  background-color: #3279CB;
+  transition: background-color 1s;
+}
+.split:active {
+  background-color: #3279CB;
+}
