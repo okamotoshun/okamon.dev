@@ -39,7 +39,6 @@ body, input {
   background-color: #282C34;
   background-color: #1e1e1e;
   line-height: 1.5;
-  font-family: Ricty Diminished, monospace, -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
 }
 
 
@@ -60,11 +59,6 @@ border-spacing: 0;
 
 /* history */
 
-body {
-  font-family: "Quicksand", sans-serif;
-  /* color: #424949; */
-}
-
 h1 {
   text-align: center;
   height: 38px;
@@ -72,4 +66,9 @@ h1 {
 }
 h1 span {
   white-space: nowrap;
+}
+
+@font-face {
+  font-family: 'DotGothic16';
+  src: url('/fonts/DotGothic16-Regular.ttf') format('truetype');
 }
