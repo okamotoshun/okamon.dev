@@ -1,0 +1,31 @@
+.container{
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  font-family: 'DotGothic16';
+}
+
+.prompt {
+  position: absolute;
+  top: 50px;
+  left: 30px;
+  opacity: 0.3;
+}
+
+.display {
+  display: flex;
+}
+.buttonPosition{
+  font-size: large;
+  margin-top: 10px;
+  margin-left: 8px;
+}
+
+.cloud {
+  width: 60%;
+  height: 100%;
+  border-radius: 60%;
+  margin: 0 auto;
+  overflow: hidden;
+}
