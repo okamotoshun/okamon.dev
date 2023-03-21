@@ -1,6 +1,6 @@
 import { footerHeight } from '../../const/heightSetting'
 import { Box, Grid, Link, Paper, Stack, Typography, Tooltip } from '@mui/material'
-import { VscRemote, VscError, VscWarning, VscBell, VscFeedback, VscCheck } from 'react-icons/vsc'
+import { VscRemote, VscError, VscWarning, VscBell, VscFeedback, VscCheckAll } from 'react-icons/vsc'
 import { IoIosGitBranch } from 'react-icons/io'
 import { BiCodeCurly } from 'react-icons/bi'
 
@@ -150,7 +150,7 @@ export const Footer = () => {
                     background: bgBlueHover,
                   },
                 }}>
-                <VscCheck fontSize={iconSize} />
+                <VscCheckAll fontSize={iconSize} />
                 <Typography sx={{ ml: 0.5, mt: 0.1, fontSize: fontSize }}>Prettier</Typography>
               </Box>
 
