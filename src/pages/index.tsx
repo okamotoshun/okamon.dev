@@ -2,9 +2,8 @@ import styles from '../styles/profile/Home.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Box, Grid, Stack, Typography } from '@mui/material'
-import okamon from '../../public/okamon.png'
+import okamon from '../../public/image/okamon.png'
 import { pageMinHeight } from '../const/heightSetting'
-
 export default function Home() {
   return (
     <Grid

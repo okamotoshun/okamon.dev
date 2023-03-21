@@ -1,3 +1,7 @@
-export default function Blog() {
-  return <>blogです</>
+export default function BlogPost() {
+  return (
+    <>
+      <h1>Blog</h1>
+    </>
+  )
 }
