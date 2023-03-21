@@ -3,8 +3,8 @@ import TreeView from '@mui/lab/TreeView'
 import TreeItem from '@mui/lab/TreeItem'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { VscMarkdown } from 'react-icons/vsc'
-import { FaRegFolder, FaRegFolderOpen } from 'react-icons/fa'
+import { FolderIcon } from './FolderIcon'
+import { FileIcon } from './FileIcon'
 
 interface Page {
   id: number
@@ -14,7 +14,7 @@ interface Page {
 }
 
 interface Props {
-  profilePages:Page[]
+  profilePages: Page[]
   selectedIndex: number
   setSelectedIndex: React.Dispatch<React.SetStateAction<number>>
   currentComponent: string
@@ -55,19 +55,13 @@ export const DocumentTree = ({
   }
 
   return (
-    <TreeView
-      aria-label="file system navigator"
-      defaultCollapseIcon={<FaRegFolderOpen />}
-      defaultExpandIcon={<FaRegFolder />}
-      sx={{ minWidth: 220 }}
-      defaultExpanded={['-1', '-2']}
-
-      // sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
-    >
+    <TreeView aria-label="file system navigator" sx={{ minWidth: 220 }} defaultExpanded={['-1', '-2']}>
+      {/* profileページ */}
       <TreeItem
+        expandIcon={<FolderIcon src="user" />}
+        collapseIcon={<FolderIcon src="user-open" />}
         nodeId="-1"
         label="Profile"
-        color="#bdc3cf"
         onClick={() => {
           router.push('/')
           setSelectedIndex(-1)
@@ -97,39 +91,67 @@ export const DocumentTree = ({
           />
         ))}
       </TreeItem>
-      {/* 仮の処理今後考える */}
+      {/* blogページ */}
       <TreeItem
+        expandIcon={<FolderIcon src="blog" />}
+        collapseIcon={<FolderIcon src="blog-open" />}
         nodeId="-2"
         label="Blog"
-        color="#bdc3cf"
         onClick={() => {
           router.push('/blog')
           setSelectedIndex(-1)
         }}>
-        {blogPages.map(({ id, category, route }: any) => (
+        {blogPages.map(({ id, category, items }: any) => (
           <TreeItem
             key={id}
             nodeId={id.toString()}
             label={category}
+            expandIcon={<FolderIcon src={category} />}
+            collapseIcon={<FolderIcon src={`${category}-open`} />}
             sx={{
               color: renderTreeItemColor(id),
-              backgroundColor: renderTreeItemBgColor(id),
+              // backgroundColor: renderTreeItemBgColor(id),
               '&& .Mui-selected': {
                 backgroundColor: renderTreeItemBgColor(id),
               },
             }}
-            icon={<VscMarkdown color="#6997d5" />}
             onClick={() => {
               // 追加処理
               // if (!visiblePageIndexs.includes(id)) {
               //   const newIndexs = [...visiblePageIndexs, id]
               //   setVisiblePageIndexs(newIndexs)
               // }
-
-              router.push(route)
+              router.push(`/blog/${category}`)
               setSelectedIndex(id)
               setCurrentComponent('tree')
-            }}></TreeItem>
+            }}>
+            {items &&
+              items.map(({ id, name }) => (
+                <TreeItem
+                  key={id}
+                  nodeId={id.toString()}
+                  label={name}
+                  icon={<FileIcon src={category} />}
+                  sx={{
+                    color: renderTreeItemColor(id),
+                    backgroundColor: renderTreeItemBgColor(id),
+                    '&& .Mui-selected': {
+                      backgroundColor: renderTreeItemBgColor(id),
+                    },
+                  }}
+                  onClick={() => {
+                    // 追加処理
+                    // if (!visiblePageIndexs.includes(id)) {
+                    //   const newIndexs = [...visiblePageIndexs, id]
+                    //   setVisiblePageIndexs(newIndexs)
+                    // }
+                    router.push(`/blog/${category}`)
+                    setSelectedIndex(id)
+                    setCurrentComponent('tree')
+                  }}
+                />
+              ))}
+          </TreeItem>
         ))}
       </TreeItem>
     </TreeView>

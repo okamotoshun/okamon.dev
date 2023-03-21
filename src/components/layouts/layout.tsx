@@ -10,7 +10,7 @@ import { DocumentTree } from './DocumentTree'
 import { Footer } from './Footer'
 import { Sidebar } from './Sidebar'
 import { FileButtons } from './FileButtons'
-import { fileButtonsHeight, pageMinHeight, sideBarHeight } from '../../const/heightSetting'
+import { fileButtonsHeight, pageMinHeight, sideBarHeight, sideBarTreeHeight } from '../../const/heightSetting'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { theme } from './color/colorSetting'
 
@@ -93,7 +93,7 @@ export default function Layout({ children }: any) {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container sx={{ m: 0, p: 0 }} maxWidth={false} disableGutters>
-        <Grid container sx={{ overflow: 'auto', overflowY: 'hidden', overflowX: 'hidden' }}>
+        <Grid container sx={{ overflow: 'auto' }}>
           {/* SIDEBAR */}
           <Grid item sx={{ width: 50 }}>
             <Sidebar
@@ -112,30 +112,32 @@ export default function Layout({ children }: any) {
             {/* EXPLORER & SEARCH */}
             <Pane style={{ backgroundColor: '#252527' }}>
               <Grid>
-                {seachFlag ? (
-                  <Stack sx={{ mt: 1 }}>
+                <Stack sx={{ mt: 1 }}>
+                  {seachFlag ? (
                     <Typography color="white" variant="caption" sx={{ ml: 4 }}>
                       SEARCH
                     </Typography>
-                  </Stack>
-                ) : (
-                  //EXPLORER
-                  <Stack sx={{ mt: 1 }}>
-                    <Typography color="white" variant="caption" sx={{ ml: 4 }}>
-                      EXPLORER
-                    </Typography>
-                    <DocumentTree
-                      profilePages={profilePages}
-                      blogPages={blogPages}
-                      selectedIndex={selectedIndex}
-                      setSelectedIndex={setSelectedIndex}
-                      currentComponent={currentComponent}
-                      setCurrentComponent={setCurrentComponent}
-                      visiblePageIndexs={visiblePageIndexs}
-                      setVisiblePageIndexs={setVisiblePageIndexs}
-                    />
-                  </Stack>
-                )}
+                  ) : (
+                    //EXPLORER
+                    <>
+                      <Typography color="white" variant="caption" sx={{ ml: 4 }}>
+                        EXPLORER
+                      </Typography>
+                      <Grid sx={{ height: sideBarTreeHeight, overflowY: 'auto' }}>
+                        <DocumentTree
+                          profilePages={profilePages}
+                          blogPages={blogPages}
+                          selectedIndex={selectedIndex}
+                          setSelectedIndex={setSelectedIndex}
+                          currentComponent={currentComponent}
+                          setCurrentComponent={setCurrentComponent}
+                          visiblePageIndexs={visiblePageIndexs}
+                          setVisiblePageIndexs={setVisiblePageIndexs}
+                        />
+                      </Grid>
+                    </>
+                  )}
+                </Stack>
               </Grid>
             </Pane>
             <Pane minSize="20%">
