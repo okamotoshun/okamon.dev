@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "category": "TypeScript",
+    "route": "/blog/TypeScript",
+    "items": [
+      {
+        "id": "jsf_qkjn-y",
+        "name": "Reactの書き方",
+        "route": "/blog/typescript/jsf_qkjn-y"
+      },
+      {
+        "id": "typescript2",
+        "name": "TypeScript2",
+        "route": "/blog/typescript/typescript2"
+      },
+      {
+        "id": "typescript1",
+        "name": "TypeScript1",
+        "route": "/blog/typescript/typescript1"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "category": "React",
+    "route": "/blog/React",
+    "items": [
+      {
+        "id": "react2",
+        "name": "React2",
+        "route": "/blog/react/react2"
+      },
+      {
+        "id": "react1",
+        "name": "React1",
+        "route": "/blog/react/react1"
+      }
+    ]
+  }
+]
