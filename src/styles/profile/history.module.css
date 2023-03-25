@@ -1,7 +1,7 @@
 .container {
   height: 100%;
   width: 100%;
-  cursor: url(../../../public/image/pokemon/モンスターボール.cur), pointer;
+  cursor: url(/image/pokemon/モンスターボール.cur), pointer;
   font-family: 'DotGothic16';
   overflow: hidden
 }
@@ -19,7 +19,7 @@
 }
 
 .pickel {
-  cursor: url(../../../public/image/pokemon/ピッケル.cur), pointer;
+  cursor: url(/image/pokemon/ピッケル.cur), pointer;
 }
 
 
