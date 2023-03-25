@@ -50,12 +50,12 @@ export default function Layout({ children }: any) {
         {
           id: 1,
           name: 'Helloworld',
-          route: '/profile/Helloworld',
+          route: '/profile/helloworld',
           category: 'Helloworld',
         },
       ])
       setSelectedIndex(1)
-    } else if (path === '/profile/Helloworld') {
+    } else if (path === '/profile/helloworld') {
       setSelectedIndex(1)
     }
   }, [])
@@ -127,7 +127,7 @@ export default function Layout({ children }: any) {
                   <Grid
                     sx={{
                       scrollBehavior: 'smooth',
-                      overflowY: router.pathname === '/profile/Helloworld' ? '' : 'auto',
+                      overflowY: router.pathname === '/profile/helloworld' ? '' : 'auto',
                       height: pageMinHeight,
                     }}>
                     {children}

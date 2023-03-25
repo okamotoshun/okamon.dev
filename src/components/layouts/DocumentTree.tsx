@@ -95,8 +95,8 @@ export const DocumentTree = ({
       </TreeItem>
       {/* blogページ */}
       <TreeItem
-        expandIcon={<FolderIcon src="blog" />}
-        collapseIcon={<FolderIcon src="blog-open" />}
+        expandIcon={<FolderIcon src="Blog" />}
+        collapseIcon={<FolderIcon src="Blog-open" />}
         nodeId="-2"
         label="Blog"
         onClick={() => {
