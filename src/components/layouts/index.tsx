@@ -49,9 +49,9 @@ export default function Layout({ children }: any) {
       setVisiblePages([
         {
           id: 1,
-          name: 'Helloworld',
+          name: 'HelloWorld',
           route: '/profile/helloworld',
-          category: 'Helloworld',
+          category: 'HelloWorld',
         },
       ])
       setSelectedIndex(1)
