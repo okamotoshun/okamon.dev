@@ -3,34 +3,31 @@ import React from 'react'
 import { VscChromeClose } from 'react-icons/vsc'
 import { Container } from '@mui/system'
 import { useRouter } from 'next/router'
+import { FileIcon } from './FileIcon'
+
+interface Page {
+  id: number
+  name: string
+  route: string
+  category: string
+}
 
 interface Props {
-  pages: {
-    id: number
-    name: string
-    route: string
-    icon: JSX.Element
-  }[]
   selectedIndex: number
   setSelectedIndex: React.Dispatch<React.SetStateAction<number>>
-  currentComponent: string
-  setCurrentComponent: React.Dispatch<React.SetStateAction<string>>
-  visiblePageIndexs: number[]
-  setVisiblePageIndexs: React.Dispatch<React.SetStateAction<number[]>>
+  visiblePages: Page[]
+  setVisiblePages: React.Dispatch<React.SetStateAction<Page[]>>
 }
 
 export const FileButtons = ({
-  pages,
   selectedIndex,
   setSelectedIndex,
-  currentComponent,
-  setCurrentComponent,
-  visiblePageIndexs,
-  setVisiblePageIndexs,
+  visiblePages,
+  setVisiblePages,
 }: Props) => {
   const router = useRouter()
 
-  const renderPageButton = (id: number, name: string, route: string, icon: JSX.Element) => {
+  const renderPageButton = (id: number, name: string, route: string, category: string, index: number) => {
     return (
       <Box
         key={id}
@@ -46,7 +43,6 @@ export const FileButtons = ({
           disableFocusRipple
           onClick={() => {
             setSelectedIndex(id)
-            setCurrentComponent('button')
             router.push(route)
           }}
           sx={{
@@ -62,7 +58,7 @@ export const FileButtons = ({
             pb: 0.2,
           }}>
           <Box sx={{ color: '#6997d5', width: 20, height: 20, mr: 0.4, ml: -1 }}>
-            {icon}
+            <FileIcon src={category} height={20} width={20} />
           </Box>
           {name}
           <Box
@@ -81,11 +77,32 @@ export const FileButtons = ({
               transition: 'none',
             }}
             elevation={0}
-            onClick={(e: any) => {
+            onClick={(e) => {
               e.stopPropagation()
-              setVisiblePageIndexs(visiblePageIndexs.filter((x) => x !== id))
+              const pageLength = visiblePages.length
+              if (pageLength === 1) {
+                console.log(pageLength)
+                router.push('/')
+                const newVisiblePages = [...visiblePages]
+                newVisiblePages.splice(index, 1)
+                setVisiblePages(newVisiblePages)
+                setSelectedIndex(-1)
+              } else if (pageLength === index + 1) {
+                const newVisiblePages = [...visiblePages]
+                newVisiblePages.splice(index, 1)
+                setVisiblePages(newVisiblePages)
+                setSelectedIndex(newVisiblePages[index - 1].id)
+                router.push(newVisiblePages[index - 1].route)
+              } else {
+                const newVisiblePages = [...visiblePages]
+                newVisiblePages.splice(index, 1)
+                setVisiblePages(newVisiblePages)
+                setSelectedIndex(newVisiblePages[index].id)
+                router.push(newVisiblePages[index].route)
+                // setSelectedIndex(visiblePages[index].id)
+              }
             }}>
-            <VscChromeClose/>
+            <VscChromeClose />
           </Box>
         </Button>
       </Box>
@@ -112,7 +129,9 @@ export const FileButtons = ({
           backgroundColor: '#ffffff',
         },
       }}>
-      {pages.map(({ id, name, route, icon }) => renderPageButton(id, name, route, icon))}
+      {visiblePages.map(({ id, name, route, category }, index) =>
+        renderPageButton(id, name, route, category, index),
+      )}
     </Container>
   )
 }

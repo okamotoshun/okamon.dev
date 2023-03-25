@@ -82,28 +82,6 @@ export const Sidebar = ({ expanded, setExpanded, seachFlag, setSeachFlag }: Prop
           </Box>
         </Box>
 
-        <Tooltip title="Source of this project" arrow placement="right">
-          {/* githubのメインブランチ入れる */}
-          <Link target="_blank" href="https://github.com/okamotoshun">
-            <Box
-              sx={{
-                flexGrow: 0,
-                cursor: 'pointer',
-                color: '#858585',
-                fontSize: 26,
-                '&:hover': {
-                  color: 'white',
-                },
-              }}
-              display="flex"
-              justifyContent="center">
-              <Box mt={0.7}>
-                <BiGitBranch />
-              </Box>
-            </Box>
-          </Link>
-        </Tooltip>
-
         {links.map((link) => (
           <Tooltip title={link.title} arrow placement="right" key={link.index}>
             <Link target={link.href === '/blog' ? '' : '_blank'} href={link.href}>

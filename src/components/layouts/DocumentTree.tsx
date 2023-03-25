@@ -2,7 +2,6 @@ import * as React from 'react'
 import TreeView from '@mui/lab/TreeView'
 import TreeItem from '@mui/lab/TreeItem'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 import { FolderIcon } from './FolderIcon'
 import { FileIcon } from './FileIcon'
 
@@ -10,18 +9,16 @@ interface Page {
   id: number
   name: string
   route: string
-  icon: JSX.Element
+  category: string
 }
 
 interface Props {
   profilePages: Page[]
+  blogPages: any
   selectedIndex: number
   setSelectedIndex: React.Dispatch<React.SetStateAction<number>>
-  currentComponent: string
-  setCurrentComponent: React.Dispatch<React.SetStateAction<string>>
-  visiblePageIndexs: number[]
-  setVisiblePageIndexs: React.Dispatch<React.SetStateAction<number[]>>
-  blogPages: any
+  visiblePages: Page[]
+  setVisiblePages: React.Dispatch<React.SetStateAction<Page[]>>
 }
 
 export const DocumentTree = ({
@@ -29,64 +26,69 @@ export const DocumentTree = ({
   blogPages,
   selectedIndex,
   setSelectedIndex,
-  currentComponent,
-  setCurrentComponent,
-  visiblePageIndexs,
-  setVisiblePageIndexs,
+  visiblePages,
+  setVisiblePages,
 }: Props) => {
   const router = useRouter()
-  // const [selectedIndex, setSelectedIndex] = useState(-1);
-  const { pathname } = useRouter()
 
-  const page: Page = profilePages?.find((x) => x.route === pathname)!
-
-  useEffect(() => {
-    if (page) {
-      setSelectedIndex(page.id)
-    }
-  }, [page, setSelectedIndex])
-
-  function renderTreeItemBgColor(id: number) {
-    return selectedIndex === id ? 'rgba(144,202,249,0.16)' : '#252527'
+  function renderTreeItemBgColor(index: number) {
+    return selectedIndex === index ? 'rgba(144,202,249,0.16)' : '#252527'
+  }
+  function renderTreeItemColor(index: number) {
+    return selectedIndex === index ? 'white' : '#bdc3cf'
   }
 
-  function renderTreeItemColor(id: number) {
-    return selectedIndex === id && currentComponent === 'tree' ? 'white' : '#bdc3cf'
+  const onClickFile = ({ id, name, route, category }: Page) => {
+    setSelectedIndex(id)
+    if (!visiblePages.some((page) => page.id === id)) {
+      setVisiblePages((prevPages) => [...prevPages, { id, name, route, category }])
+    }
+    router.push(route)
+    console.log(id)
   }
 
   return (
-    <TreeView aria-label="file system navigator" sx={{ minWidth: 220 }} defaultExpanded={['-1', '-2']}>
+    <TreeView aria-label="file system navigator" sx={{ minWidth: 220 }} defaultExpanded={[]}>
       {/* profileページ */}
       <TreeItem
-        expandIcon={<FolderIcon src="user" />}
-        collapseIcon={<FolderIcon src="user-open" />}
+        icon={<FileIcon src="Home" height={20} width={20} />}
+        nodeId="0"
+        label="Home"
+        sx={{
+          // color: renderTreeItemColor(id),
+          backgroundColor: renderTreeItemBgColor(1000),
+          '&& .Mui-selected': {
+            backgroundColor: renderTreeItemBgColor(1000),
+          },
+        }}
+        onClick={() => {
+          router.push('/')
+          setSelectedIndex(0)
+        }}></TreeItem>
+      <TreeItem
+        expandIcon={<FolderIcon src="Profile" />}
+        collapseIcon={<FolderIcon src="Profile-open" />}
         nodeId="-1"
         label="Profile"
         onClick={() => {
-          router.push('/')
-          setSelectedIndex(-1)
+          // router.push('/')
+          // setSelectedIndex(-1)
         }}>
-        {profilePages?.map(({ id, name, route, icon }) => (
+        {profilePages?.map(({ id, name, route, category }) => (
           <TreeItem
             key={id}
             nodeId={id.toString()}
             label={name}
+            icon={<FileIcon src={name} height={20} width={20} />}
             sx={{
-              color: renderTreeItemColor(id),
+              // color: renderTreeItemColor(id),
               backgroundColor: renderTreeItemBgColor(id),
               '&& .Mui-selected': {
                 backgroundColor: renderTreeItemBgColor(id),
               },
             }}
-            icon={icon}
             onClick={() => {
-              if (!visiblePageIndexs.includes(id)) {
-                const newIndexs = [...visiblePageIndexs, id]
-                setVisiblePageIndexs(newIndexs)
-              }
-              router.push(route)
-              setSelectedIndex(id)
-              setCurrentComponent('tree')
+              onClickFile({ id, name, route, category })
             }}
           />
         ))}
@@ -98,56 +100,36 @@ export const DocumentTree = ({
         nodeId="-2"
         label="Blog"
         onClick={() => {
-          router.push('/blog')
-          setSelectedIndex(-1)
+          // router.push('/blog')
+          // setSelectedIndex(-2)
         }}>
-        {blogPages.map(({ id, category, items }: any) => (
+        {blogPages.map(({ id, category, route, items }: any) => (
           <TreeItem
-            key={id}
+            key={category}
             nodeId={id.toString()}
             label={category}
             expandIcon={<FolderIcon src={category} />}
             collapseIcon={<FolderIcon src={`${category}-open`} />}
-            sx={{
-              color: renderTreeItemColor(id),
-              // backgroundColor: renderTreeItemBgColor(id),
-              '&& .Mui-selected': {
-                backgroundColor: renderTreeItemBgColor(id),
-              },
-            }}
             onClick={() => {
-              // 追加処理
-              // if (!visiblePageIndexs.includes(id)) {
-              //   const newIndexs = [...visiblePageIndexs, id]
-              //   setVisiblePageIndexs(newIndexs)
-              // }
-              router.push(`/blog/${category}`)
-              setSelectedIndex(id)
-              setCurrentComponent('tree')
+              // router.push(route)
+              // setSelectedIndex(id)
             }}>
             {items &&
-              items.map(({ id, name }) => (
+              items.map(({ id, name, route }: Page) => (
                 <TreeItem
                   key={id}
                   nodeId={id.toString()}
                   label={name}
                   icon={<FileIcon src={category} />}
                   sx={{
-                    color: renderTreeItemColor(id),
+                    // color: renderTreeItemColor(id),
                     backgroundColor: renderTreeItemBgColor(id),
                     '&& .Mui-selected': {
                       backgroundColor: renderTreeItemBgColor(id),
                     },
                   }}
                   onClick={() => {
-                    // 追加処理
-                    // if (!visiblePageIndexs.includes(id)) {
-                    //   const newIndexs = [...visiblePageIndexs, id]
-                    //   setVisiblePageIndexs(newIndexs)
-                    // }
-                    router.push(`/blog/${category}`)
-                    setSelectedIndex(id)
-                    setCurrentComponent('tree')
+                    onClickFile({ id, name, route, category })
                   }}
                 />
               ))}
