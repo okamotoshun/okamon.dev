@@ -24,7 +24,7 @@ export default function Home() {
           </Grid>
           <Grid display="flex" justifyContent={{ xs: 'center', sm: 'center' }}>
             <Link
-              href={'/profile/Helloworld'}
+              href={'/profile/helloworld'}
               className={`${styles.btn} ${styles.btngradientborder} ${styles.btnglow}`}>
               <span className={styles.textgradient}> Hello Okamon World!</span>
             </Link>
