@@ -49,10 +49,10 @@ export const FileButtons = ({
             borderRadius: 0,
             px: 2,
             textTransform: 'none',
-            backgroundColor: selectedIndex === id ? '#1e1e1e' : '#2d2d2d',
+            backgroundColor: selectedIndex === id ? '#222222' : '#2d2d2d',
             color: selectedIndex === id ? 'white' : '#817d7a',
             '&.MuiButtonBase-root:hover': {
-              bgcolor: selectedIndex === id ? '#1e1e1e' : '#2d2d2d',
+              bgcolor: selectedIndex === id ? '#222222' : '#2d2d2d',
             },
             transition: 'none',
             pb: 0.2,
@@ -66,7 +66,7 @@ export const FileButtons = ({
             sx={{
               ml: 1,
               mr: -1,
-              backgroundColor: selectedIndex === id ? '#1e1e1e' : '#2d2d2d',
+              backgroundColor: selectedIndex === id ? '#222222' : '#2d2d2d',
               color: selectedIndex === id ? 'white' : '#2d2d2d',
               '&.MuiPaper-root:hover': {
                 bgcolor: '#333c43',

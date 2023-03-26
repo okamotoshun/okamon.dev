@@ -2,7 +2,9 @@ import blogPages from 'const/blog.json'
 import { client } from 'libs/client'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-
+import { load } from 'cheerio' // cheerioの直接参照は非推奨だったため、loadをimport
+import hljs from 'highlight.js'
+import 'highlight.js/styles/vs2015.css'
 type Blog = {
   title: string
   body: string
@@ -15,9 +17,10 @@ type Params = {
 
 type Props = {
   blog: Blog
+  highlightedBody: any
 }
 
-export default function Post({ blog }: Props) {
+export default function Post({ blog, highlightedBody }: Props) {
   const router = useRouter()
 
   if (router.isFallback) {
@@ -25,46 +28,14 @@ export default function Post({ blog }: Props) {
   }
 
   return (
-    <div>
+    <div style={{ width: '80%', margin: '0 auto' }}>
       <h1>{blog.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: blog.body }}></div>
+      <div dangerouslySetInnerHTML={{ __html: highlightedBody }}></div>
     </div>
   )
 }
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  // const data = await client.get({ endpoint: 'blog' })
-  // console.log(data)
-
-  // const blogPages = data.contents.reduce((result: { id: any; category: any; route: string; items: { id: any; name: any; route: string }[] }[], post: { category: { name: any }; id: any; title: any }) => {
-  //   const category = post.category.name
-  //   const page = result.find((page: { category: any }) => page.category === category)
-  //   if (page) {
-  //     page.items.push({
-  //       id: post.id,
-  //       name: post.title,
-  //       route: `/blog/${category.toLowerCase()}/${post.id}`,
-  //     })
-  //   } else {
-  //     result.push({
-  //       id: result.length + 1,
-  //       category,
-  //       route: `/blog/${category}`,
-  //       items: [
-  //         {
-  //           id: post.id,
-  //           name: post.title,
-  //           route: `/blog/${category.toLowerCase()}/${post.id}`,
-  //         },
-  //       ],
-  //     })
-  //   }
-
-  //   return result
-  // }, [])
-  // console.log(blogPages)
-
-
   const paths = blogPages.flatMap((category: { items: any[]; category: any }) => {
     return category.items.map((post: { name: any }) => {
       return {
@@ -80,16 +51,6 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
     fallback: true, // 事前にビルドされたページが存在しない場合、動的に生成する
   }
 }
-// export const getStaticPaths = async () => {
-//   const data = await client.get({ endpoint: 'blog' })
-//   console.log(data)
-//   console.log(data.contents[0].category.name)
-//   console.log(data.contents[0].id)
-
-//   const paths = data.contents.map((content) => `/blog/${content.category.name}/${content.id}`)
-
-//   return { paths, fallback: false }
-// }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async ({ params }) => {
   const slug = params?.slug
@@ -101,10 +62,18 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({ params }) 
       queries: { fields: 'title,body' },
     })
     console.log(data)
+    const $ = load(data.body)
+
+    $('pre code').each((_, elm) => {
+      const result = hljs.highlightAuto($(elm).text())
+      $(elm).html(result.value)
+      $(elm).addClass('hljs')
+    })
 
     return {
       props: {
         blog: data,
+        highlightedBody: $.html(),
       },
     }
   } catch (error) {

@@ -35,7 +35,8 @@ display: block;
 
 body, input {
   /* color: white; */
-  background-color: #1e1e1e;
+  /* background-color: #1e1e1e; */
+  background-color: #232323;
   line-height: 1.5;
 }
 
