@@ -3,7 +3,7 @@ v2.0 | 20110126
 License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
+/* html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -22,7 +22,7 @@ border: 0;
 font-size: 100%;
 font: inherit;
 vertical-align: baseline;
-}
+} */
 
 /* HTML5 display-role reset for older browsers
 */
@@ -36,13 +36,13 @@ display: block;
 body, input {
   /* color: white; */
   /* background-color: #1e1e1e; */
-  line-height: 1.5;
+  /* line-height: 1.5; */
 }
 
 
 a {
 color: var(--color-text-link);
-text-decoration: none;
+/* text-decoration: none; */
 }
 
 table {
