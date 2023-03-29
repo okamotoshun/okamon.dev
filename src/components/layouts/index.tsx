@@ -35,7 +35,7 @@ export default function Layout({ children }: any) {
   const [sizes, setSizes] = useState([250, 'auto'])
 
   useEffect(() => {
-    setSizes([expanded ? 250 : 0, 'auto'])
+    setSizes([expanded ? 300 : 0, 'auto'])
   }, [expanded])
 
   useEffect(() => {
