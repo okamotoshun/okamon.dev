@@ -7,6 +7,9 @@ export const theme = createTheme({
     background: {
       default: '#232323',
     },
+    text: {
+      primary: '#E7E8E8',
+    },
   },
   components: {
     MuiCssBaseline: {
