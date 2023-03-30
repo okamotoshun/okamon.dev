@@ -6,7 +6,7 @@ import { FolderIcon } from './FolderIcon'
 import { FileIcon } from './FileIcon'
 
 interface Page {
-  id: number
+  id: string
   name: string
   route: string
   category: string
@@ -15,8 +15,8 @@ interface Page {
 interface Props {
   profilePages: Page[]
   blogPages: any
-  selectedIndex: number
-  setSelectedIndex: React.Dispatch<React.SetStateAction<number>>
+  selectedIndex: string
+  setSelectedIndex: React.Dispatch<React.SetStateAction<string>>
   visiblePages: Page[]
   setVisiblePages: React.Dispatch<React.SetStateAction<Page[]>>
 }
@@ -31,10 +31,10 @@ export const DocumentTree = ({
 }: Props) => {
   const router = useRouter()
 
-  function renderTreeItemBgColor(index: number) {
+  function renderTreeItemBgColor(index: string) {
     return selectedIndex === index ? 'rgba(144,202,249,0.16)' : '#252527'
   }
-  function renderTreeItemColor(index: number) {
+  function renderTreeItemColor(index: string) {
     return selectedIndex === index ? 'white' : '#bdc3cf'
   }
 
@@ -56,14 +56,14 @@ export const DocumentTree = ({
         label="Home"
         sx={{
           // color: renderTreeItemColor(id),
-          backgroundColor: renderTreeItemBgColor(1000),
+          backgroundColor: renderTreeItemBgColor('1000'),
           '&& .Mui-selected': {
-            backgroundColor: renderTreeItemBgColor(1000),
+            backgroundColor: renderTreeItemBgColor('1000'),
           },
         }}
         onClick={() => {
           router.push('/')
-          setSelectedIndex(0)
+          setSelectedIndex('0')
         }}></TreeItem>
       <TreeItem
         expandIcon={<FolderIcon src="Profile" />}

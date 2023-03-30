@@ -16,18 +16,56 @@ import { CssBaseline, ThemeProvider } from '@mui/material'
 import { theme } from './color/colorSetting'
 
 import { Container, Grid, Stack, Typography } from '@mui/material'
+import { last } from 'cheerio/lib/api/traversing'
 
+interface Item {
+  id: string
+  name: string
+  route: string
+  category: string
+  items?: Page[]
+}
 interface Page {
-  id: number
+  id: string
   name: string
   route: string
   category: string
 }
 
+const allPages: any = [...blogPages, ...profilePages]
+
+const getItems = (pages: Item[]): Page[] => {
+  const items: Page[] = []
+  pages.forEach((page) => {
+    if (page.items) {
+      page.items.forEach((item) => {
+        const category = item.category || page.category
+        items.push({
+          id: item.id,
+          name: item.name,
+          category: category,
+          route: item.route,
+        })
+      })
+    } else {
+      const category = page.category
+      items.push({
+        id: page.id,
+        name: page.name,
+        category: category,
+        route: page.route,
+      })
+    }
+  })
+  return items
+}
+const allItems = getItems(allPages)
+console.log(allItems)
+
 export default function Layout({ children }: any) {
   const router = useRouter()
 
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedIndex, setSelectedIndex] = useState('0')
   const [visiblePages, setVisiblePages] = useState<Page[]>([])
 
   const [seachFlag, setSeachFlag] = useState(false)
@@ -42,23 +80,29 @@ export default function Layout({ children }: any) {
     setExpanded(sizes[0] > 0)
   }, [sizes])
 
-  // リロード処理時にFileButtonsに格納する処理
-  const path = router.pathname
   useEffect(() => {
-    if (visiblePages.length === 0 && path === '/') {
-      setVisiblePages([
-        {
-          id: 1,
-          name: 'HelloWorld',
-          route: '/profile/helloworld',
-          category: 'HelloWorld',
-        },
-      ])
-      setSelectedIndex(1)
-    } else if (path === '/profile/helloworld') {
-      setSelectedIndex(1)
+    console.log(router.pathname)
+    if (visiblePages.length === 0 && selectedIndex === '0' && router.pathname !== '/') {
+      const { slug } = router.query
+      const lastValue = slug ? slug : router.pathname.split('/').pop() // 'helloworld'
+      const matchingPage = allPages.find((page: { id: string }) => page.id === lastValue)
+      console.log(lastValue)
+      console.log(matchingPage)
+
+      if (matchingPage) {
+        const newVisiblePages = [
+          {
+            id: matchingPage.id,
+            name: matchingPage.name,
+            route: matchingPage.route,
+            category: matchingPage.category,
+          },
+        ]
+        setVisiblePages(newVisiblePages)
+        setSelectedIndex(matchingPage.id)
+      }
     }
-  }, [])
+  }, [router.pathname, router.query, selectedIndex, visiblePages])
 
   return (
     <ThemeProvider theme={theme}>

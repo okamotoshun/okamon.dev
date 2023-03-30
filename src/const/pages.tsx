@@ -1,8 +1,8 @@
 export const profilePages = [
-  { id: 1, name: 'HelloWorld', category: 'HelloWorld', route: '/profile/helloworld' },
-  { id: 2, name: 'History', category: 'History', route: '/profile/history' },
-  { id: 3, name: 'Mind', category: 'Mind', route: '/profile/mind' },
-  { id: 4, name: 'Skills', category: 'Skills', route: '/profile/skills' },
+  { id: 'helloworld', name: 'HelloWorld', category: 'HelloWorld', route: '/profile/helloworld' },
+  { id: 'history', name: 'History', category: 'History', route: '/profile/history' },
+  { id: 'mind', name: 'Mind', category: 'Mind', route: '/profile/mind' },
+  { id: 'skills', name: 'Skills', category: 'Skills', route: '/profile/skills' },
 ]
 
 // export const blogPages = [

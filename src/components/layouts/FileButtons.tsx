@@ -6,15 +6,15 @@ import { useRouter } from 'next/router'
 import { FileIcon } from './FileIcon'
 
 interface Page {
-  id: number
+  id: string
   name: string
   route: string
   category: string
 }
 
 interface Props {
-  selectedIndex: number
-  setSelectedIndex: React.Dispatch<React.SetStateAction<number>>
+  selectedIndex: string
+  setSelectedIndex: React.Dispatch<React.SetStateAction<string>>
   visiblePages: Page[]
   setVisiblePages: React.Dispatch<React.SetStateAction<Page[]>>
 }
@@ -27,7 +27,7 @@ export const FileButtons = ({
 }: Props) => {
   const router = useRouter()
 
-  const renderPageButton = (id: number, name: string, route: string, category: string, index: number) => {
+  const renderPageButton = (id: string, name: string, route: string, category: string, index: number) => {
     return (
       <Box
         key={id}
@@ -86,7 +86,7 @@ export const FileButtons = ({
                 const newVisiblePages = [...visiblePages]
                 newVisiblePages.splice(index, 1)
                 setVisiblePages(newVisiblePages)
-                setSelectedIndex(-1)
+                setSelectedIndex('-1')
               } else if (pageLength === index + 1) {
                 const newVisiblePages = [...visiblePages]
                 newVisiblePages.splice(index, 1)

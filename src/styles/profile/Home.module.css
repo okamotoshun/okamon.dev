@@ -6,7 +6,8 @@
 }
 
 .textglow {
-  text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
+  font-size: 48px;
+  /* text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%); */
 }
 
 .btn {
