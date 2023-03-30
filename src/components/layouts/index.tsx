@@ -16,7 +16,6 @@ import { CssBaseline, ThemeProvider } from '@mui/material'
 import { theme } from './color/colorSetting'
 
 import { Container, Grid, Stack, Typography } from '@mui/material'
-import { last } from 'cheerio/lib/api/traversing'
 
 interface Item {
   id: string
@@ -32,13 +31,11 @@ interface Page {
   category: string
 }
 
-const allPages: any = [...blogPages, ...profilePages]
-
-const getItems = (pages: Item[]): Page[] => {
+const getItems = (pages: any) => {
   const items: Page[] = []
-  pages.forEach((page) => {
+  pages.forEach((page: Item) => {
     if (page.items) {
-      page.items.forEach((item) => {
+      page.items.forEach((item: Page) => {
         const category = item.category || page.category
         items.push({
           id: item.id,
@@ -59,8 +56,15 @@ const getItems = (pages: Item[]): Page[] => {
   })
   return items
 }
-const allItems = getItems(allPages)
-console.log(allItems)
+
+const blogItems = getItems(blogPages)
+const profileItems = getItems(profilePages)
+
+console.log(blogItems)
+console.log(profileItems)
+
+const allPages = [...blogItems, ...profileItems]
+console.log(allPages)
 
 export default function Layout({ children }: any) {
   const router = useRouter()
@@ -81,13 +85,12 @@ export default function Layout({ children }: any) {
   }, [sizes])
 
   useEffect(() => {
-    console.log(router.pathname)
     if (visiblePages.length === 0 && selectedIndex === '0' && router.pathname !== '/') {
-      const { slug } = router.query
-      const lastValue = slug ? slug : router.pathname.split('/').pop() // 'helloworld'
-      const matchingPage = allPages.find((page: { id: string }) => page.id === lastValue)
-      console.log(lastValue)
-      console.log(matchingPage)
+      const { slug, category } = router.query
+      const matchingPage =
+        slug && category
+          ? allPages.find((page) => `/blog/${category}/${slug}` === page.route)
+          : allPages.find((page) => page.route === router.pathname)
 
       if (matchingPage) {
         const newVisiblePages = [
@@ -102,7 +105,7 @@ export default function Layout({ children }: any) {
         setSelectedIndex(matchingPage.id)
       }
     }
-  }, [router.pathname, router.query, selectedIndex, visiblePages])
+  }, [router.pathname, selectedIndex, visiblePages, router.query])
 
   return (
     <ThemeProvider theme={theme}>
