@@ -64,7 +64,7 @@ export default function Layout({ children }: any) {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container sx={{ m: 0, p: 0 }} maxWidth={false} disableGutters>
-        <Grid container sx={{ overflow: 'auto' }}>
+        <Grid container sx={{ overflow: 'auto', overflowY: 'hidden', overflowX: 'hidden' }}>
           {/* SIDEBAR */}
           <Grid item sx={{ width: 50 }}>
             <Sidebar
@@ -109,7 +109,7 @@ export default function Layout({ children }: any) {
                 </Stack>
               </Grid>
             </Pane>
-            <Pane minSize="60%">
+            <Pane minSize="50%">
               {/* MAINPREVIEW */}
               <Grid item xs zeroMinWidth>
                 <Grid
