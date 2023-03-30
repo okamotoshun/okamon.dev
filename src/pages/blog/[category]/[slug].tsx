@@ -28,7 +28,7 @@ export default function Post({ blog, highlightedBody }: Props) {
   }
 
   return (
-    <div style={{ width: '80%', margin: '20px auto 0' }}>
+    <div style={{ width: '90%', margin: '20px auto 0' }}>
       <h1>{blog.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: highlightedBody }}></div>
     </div>
