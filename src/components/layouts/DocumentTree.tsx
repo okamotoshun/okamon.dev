@@ -47,7 +47,11 @@ export const DocumentTree = ({
   }
 
   return (
-    <TreeView aria-label="file system navigator" sx={{ minWidth: 220 }} defaultExpanded={[]}>
+    <TreeView
+      aria-label="file system navigator"
+      sx={{ minWidth: 220 }}
+      defaultExpanded={[]}
+      style={{ overflowX: 'clip' }}>
       {/* profileページ */}
       <TreeItem
         icon={<FileIcon src="Home" height={20} width={20} />}
@@ -126,6 +130,12 @@ export const DocumentTree = ({
                     '&& .Mui-selected': {
                       backgroundColor: renderTreeItemBgColor(id),
                     },
+                    ' && .MuiTreeItem-content': {
+                      display: '-webkit-box',
+                    },
+                    ' && .MuiTreeItem-content .MuiTreeItem-label': {
+                      width: '100vw',
+                    },
                   }}
                   onClick={() => {
                     onClickFile({ id, name, route, category })
@@ -138,3 +148,12 @@ export const DocumentTree = ({
     </TreeView>
   )
 }
+;<style jsx>{`
+  .MuiTreeItem-content {
+    display: -webkit-box;
+  }
+
+  .MuiTreeItem-content .MuiTreeItem-label {
+    width: 100vw;
+  }
+`}</style>
