@@ -14,7 +14,7 @@ export default function Home() {
       sx={{ minHeight: pageMinHeight }}>
       <Stack direction={{ xs: 'column', sm: 'row-reverse' }} spacing={4}>
         <Box display="flex" sx={{ justifyContent: 'center' }}>
-          <Image src={okamon} width={300} height={300} alt="okamon-image" />
+          <Image src={okamon} width={250} height={250} alt="okamon-image" />
         </Box>
         <Box display="flex" alignItems={{ xs: 'center', sm: 'center' }}>
           <Grid display="flex" justifyContent={{ xs: 'center', sm: 'center' }}>
