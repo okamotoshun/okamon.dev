@@ -92,7 +92,7 @@ export default function Layout({ children }: any) {
         : allPages.find((page) => page.route === router.pathname)
     if (matchingPage) {
       // リロード処理
-      if (visiblePages.length === 0 && router.pathname !== '/') {
+      if (visiblePages.length === 0 && selectedIndex === '0' && router.pathname !== '/') {
         const newVisiblePages = [
           {
             id: matchingPage.id,
@@ -104,12 +104,12 @@ export default function Layout({ children }: any) {
         setVisiblePages(newVisiblePages)
         setSelectedIndex(matchingPage.id)
 
-        // 遷移処理
+      // 遷移処理
       } else if (visiblePages.length !== 0) {
         setSelectedIndex(matchingPage.id)
       }
     }
-  }, [router.pathname, visiblePages, router.query])
+  }, [router, selectedIndex, visiblePages])
 
   return (
     <ThemeProvider theme={theme}>
