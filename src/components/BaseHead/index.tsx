@@ -8,7 +8,7 @@ type Props = {
   ogImage?: string
 }
 
-export const BaseHead: FC<Props> = ({ title, description, ogImage='/public/image/okamon.png' }) => {
+export const BaseHead: FC<Props> = ({ title, description, ogImage='/image/okamon.png' }) => {
   const pathname = usePathname()
   return (
     <Head>
