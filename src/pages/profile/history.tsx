@@ -3,6 +3,7 @@ import Image from 'next/image'
 import 'react-step-progress-bar/styles.css'
 import { ProgressBar, Step } from 'react-step-progress-bar'
 import styles from '../../styles/profile/history.module.css'
+import { BaseHead } from '@/components/BaseHead'
 
 const textList = [
   {
@@ -106,6 +107,7 @@ export default function History() {
   const [percent, setPercent] = useState(0)
   return (
     <div className={styles.container}>
+      <BaseHead title={'History'} />
       <div className={styles.progressContainer}>
         <ProgressBar percent={percent} filledBackground="linear-gradient(to right, #fefb72, #f0bb31)">
           {steps.map((step, index) => (

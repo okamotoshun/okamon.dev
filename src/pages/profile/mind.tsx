@@ -1,3 +1,4 @@
+import { BaseHead } from '@/components/BaseHead'
 import { useState } from 'react'
 import { BsFillArrowDownRightCircleFill } from 'react-icons/bs'
 import { TagCloud } from 'react-tagcloud'
@@ -71,6 +72,7 @@ export default function Blog() {
   const [shuffle, setShuffle] = useState(true)
   return (
     <div className={styles.container} onClick={() => setShuffle(!shuffle)}>
+      <BaseHead title={'Mind'} />
       <div className={styles.prompt}>
         <div className={styles.display}>
           <p>please touch this screen</p>

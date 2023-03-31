@@ -1,9 +1,9 @@
 import styles from '../styles/profile/Home.module.css'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Box, Grid, Stack, Typography } from '@mui/material'
 import okamon from '../../public/image/okamon.png'
 import { pageMinHeight } from '../const/heightSetting'
+import { BaseHead } from '@/components/BaseHead'
 export default function Home() {
   return (
     <Grid
@@ -12,6 +12,7 @@ export default function Home() {
       alignItems="center"
       justifyContent="center"
       sx={{ minHeight: pageMinHeight }}>
+      <BaseHead title={'Okamon.dev'} />
       <Stack direction={{ xs: 'column', sm: 'row-reverse' }} spacing={4}>
         <Box display="flex" sx={{ justifyContent: 'center' }}>
           <Image src={okamon} width={250} height={250} alt="okamon-image" />

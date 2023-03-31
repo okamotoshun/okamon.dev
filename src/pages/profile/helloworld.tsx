@@ -3,6 +3,7 @@ import styles from '../../styles/profile/helloworld.module.css'
 import { Stack } from '@mui/system'
 import { asciiArt, helloWorld } from '../../const/asciiArt'
 import { useState } from 'react'
+import { BaseHead } from '@/components/BaseHead'
 
 const colors = {
   pink: '#D082C4',
@@ -27,6 +28,7 @@ export default function Helloworld() {
   const [typeFlag, setTypeFlag] = useState(false)
   return (
     <Stack direction="row" justifyContent="flex-start" alignItems="flex-start">
+      <BaseHead title={'Hello World'} />
       <div className={styles.lines}>{numberLines}</div>
       <pre className={styles.code}>
         <p style={{ color: colors.green }}>{helloWorld}</p>

@@ -1,3 +1,4 @@
+import { BaseHead } from '@/components/BaseHead'
 import { ProgressBar } from 'react-progressbar-fancy'
 import styles from '../../styles/profile/skills.module.css'
 
@@ -55,6 +56,7 @@ const skillsData = [
 export default function Skills() {
   return (
     <div className={styles.container}>
+      <BaseHead title={'Skills'} />
       <div className={styles.skillsContainer}>
         {skillsData.map((skill, index) => (
           <ProgressBar
