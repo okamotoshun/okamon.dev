@@ -4,11 +4,11 @@ import { FC } from 'react'
 
 type Props = {
   title: string
-  description: string
+  description?: string
   ogImage?: string
 }
 
-export const BaseHead: FC<Props> = ({ title, description, ogImage='/image/okamon.png' }) => {
+export const BaseHead: FC<Props> = ({ title, description, ogImage='/public/image/okamon.png' }) => {
   const pathname = usePathname()
   return (
     <Head>
@@ -17,8 +17,8 @@ export const BaseHead: FC<Props> = ({ title, description, ogImage='/image/okamon
       <meta name="description" content={description} />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="icon" href="/favicon.ico" />
-      <link rel="canonical" href={`https://iz-dot.me${pathname}`} />
-      <meta property="og:url" content={`https://iz-dot.me${pathname}`} />
+      <link rel="canonical" href={`https://okamon.dev${pathname}`} />
+      <meta property="og:url" content={`https://okamon.dev${pathname}`} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
