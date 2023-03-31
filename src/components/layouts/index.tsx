@@ -85,14 +85,14 @@ export default function Layout({ children }: any) {
   }, [sizes])
 
   useEffect(() => {
-    if (visiblePages.length === 0 && selectedIndex === '0' && router.pathname !== '/') {
-      const { slug, category } = router.query
-      const matchingPage =
-        slug && category
-          ? allPages.find((page) => `/blog/${category}/${slug}` === page.route)
-          : allPages.find((page) => page.route === router.pathname)
-
-      if (matchingPage) {
+    const { slug, category } = router.query
+    const matchingPage =
+      slug && category
+        ? allPages.find((page) => `/blog/${category}/${slug}` === page.route)
+        : allPages.find((page) => page.route === router.pathname)
+    if (matchingPage) {
+      // リロード処理
+      if (visiblePages.length === 0 && router.pathname !== '/') {
         const newVisiblePages = [
           {
             id: matchingPage.id,
@@ -103,9 +103,13 @@ export default function Layout({ children }: any) {
         ]
         setVisiblePages(newVisiblePages)
         setSelectedIndex(matchingPage.id)
+
+        // 遷移処理
+      } else if (visiblePages.length !== 0) {
+        setSelectedIndex(matchingPage.id)
       }
     }
-  }, [router.pathname, selectedIndex, visiblePages, router.query])
+  }, [router.pathname, visiblePages, router.query])
 
   return (
     <ThemeProvider theme={theme}>
