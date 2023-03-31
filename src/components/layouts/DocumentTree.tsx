@@ -40,7 +40,7 @@ export const DocumentTree = ({
 
   const onClickFile = ({ id, name, route, category }: Page) => {
     router.push(route)
-    setSelectedIndex(id)
+    // setSelectedIndex(id)
     if (!visiblePages.some((page) => page.id === id)) {
       setVisiblePages((prevPages) => [...prevPages, { id, name, route, category }])
     }
