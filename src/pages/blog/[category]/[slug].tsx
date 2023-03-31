@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { load } from 'cheerio' // cheerioの直接参照は非推奨だったため、loadをimport
 import hljs from 'highlight.js'
 import 'highlight.js/styles/vs2015.css'
+import { BaseHead } from '@/components/BaseHead'
 type Blog = {
   title: string
   body: string
@@ -28,10 +29,13 @@ export default function Post({ blog, highlightedBody }: Props) {
   }
 
   return (
-    <div style={{ width: '90%', margin: '0 auto' }}>
-      <h1>{blog.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: highlightedBody }}></div>
-    </div>
+    <>
+      <BaseHead title={blog.title} description={''} />
+      <div style={{ width: '90%', margin: '0 auto' }}>
+        <h1>{blog.title}</h1>
+        <div dangerouslySetInnerHTML={{ __html: highlightedBody }}></div>
+      </div>
+    </>
   )
 }
 
