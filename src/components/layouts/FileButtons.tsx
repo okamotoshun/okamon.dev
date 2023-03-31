@@ -42,7 +42,7 @@ export const FileButtons = ({
           disableElevation
           disableFocusRipple
           onClick={() => {
-            setSelectedIndex(id)
+            // setSelectedIndex(id)
             router.push(route)
           }}
           sx={{
@@ -91,13 +91,13 @@ export const FileButtons = ({
                 const newVisiblePages = [...visiblePages]
                 newVisiblePages.splice(index, 1)
                 setVisiblePages(newVisiblePages)
-                setSelectedIndex(newVisiblePages[index - 1].id)
+                // setSelectedIndex(newVisiblePages[index - 1].id)
                 router.push(newVisiblePages[index - 1].route)
               } else {
                 const newVisiblePages = [...visiblePages]
                 newVisiblePages.splice(index, 1)
                 setVisiblePages(newVisiblePages)
-                setSelectedIndex(newVisiblePages[index].id)
+                // setSelectedIndex(newVisiblePages[index].id)
                 router.push(newVisiblePages[index].route)
                 // setSelectedIndex(visiblePages[index].id)
               }
