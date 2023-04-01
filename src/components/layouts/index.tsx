@@ -70,10 +70,10 @@ export default function Layout({ children }: any) {
 
   const [seachFlag, setSeachFlag] = useState(false)
   const [expanded, setExpanded] = useState(true)
-  const [sizes, setSizes] = useState([250, 'auto'])
+  const [sizes, setSizes] = useState([280, 'auto'])
 
   useEffect(() => {
-    setSizes([expanded ? 250 : 0, 'auto'])
+    setSizes([expanded ? 280 : 0, 'auto'])
   }, [expanded])
 
   useEffect(() => {
