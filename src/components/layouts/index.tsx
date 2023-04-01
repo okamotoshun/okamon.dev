@@ -2,7 +2,7 @@ import 'split-pane-react/esm/themes/default.css'
 import styles from './style/Layout.module.css'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { isBrowser } from 'react-device-detect'
+import { isMobile } from 'react-device-detect'
 
 import { profilePages } from '../../const/pages'
 import blogPages from 'const/blog.json'
@@ -68,20 +68,25 @@ export default function Layout({ children }: any) {
   const [selectedIndex, setSelectedIndex] = useState('0')
   const [visiblePages, setVisiblePages] = useState<Page[]>([])
 
-  const [seachFlag, setSeachFlag] = useState(false)
-  const [expanded, setExpanded] = useState(isBrowser)
-  const [sizes, setSizes] = useState([250, 'auto'])
+const [seachFlag, setSeachFlag] = useState(false)
+const [expanded, setExpanded] = useState(!isMobile)
+const [sizes, setSizes] = useState([250, 'auto'])
+
+useEffect(() => {
+  if (isMobile) {
+    setExpanded(false)
+  }
+}, [])
+
+useEffect(() => {
+  setSizes([expanded ? 250 : 0, 'auto'])
+}, [expanded])
+
+useEffect(() => {
+  setExpanded(sizes[0] > 0)
+}, [sizes])
 
   useEffect(() => {
-    setSizes([expanded ? 300 : 0, 'auto'])
-  }, [expanded])
-
-  useEffect(() => {
-    setExpanded(sizes[0] > 0)
-  }, [sizes])
-
-  useEffect(() => {
-
     const { slug, category } = router.query
     const matchingPage =
       slug && category
