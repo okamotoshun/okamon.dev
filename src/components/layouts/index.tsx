@@ -80,34 +80,34 @@ export default function Layout({ children }: any) {
     setExpanded(sizes[0] > 0)
   }, [sizes])
 
-  useEffect(() => {
-    console.log(12345)
+  // useEffect(() => {
+  //   console.log(12345)
 
-    const { slug, category } = router.query
-    const matchingPage =
-      slug && category
-        ? allPages.find((page) => `/blog/${category}/${slug}` === page.route)
-        : allPages.find((page) => page.route === router.pathname)
-    if (matchingPage) {
-      // リロード処理
-      if (visiblePages.length === 0 && selectedIndex === '0' && router.pathname !== '/') {
-        const newVisiblePages = [
-          {
-            id: matchingPage.id,
-            name: matchingPage.name,
-            route: matchingPage.route,
-            category: matchingPage.category,
-          },
-        ]
-        setVisiblePages(newVisiblePages)
-        setSelectedIndex(matchingPage.id)
+  //   const { slug, category } = router.query
+  //   const matchingPage =
+  //     slug && category
+  //       ? allPages.find((page) => `/blog/${category}/${slug}` === page.route)
+  //       : allPages.find((page) => page.route === router.pathname)
+  //   if (matchingPage) {
+  //     // リロード処理
+  //     if (visiblePages.length === 0 && selectedIndex === '0' && router.pathname !== '/') {
+  //       const newVisiblePages = [
+  //         {
+  //           id: matchingPage.id,
+  //           name: matchingPage.name,
+  //           route: matchingPage.route,
+  //           category: matchingPage.category,
+  //         },
+  //       ]
+  //       setVisiblePages(newVisiblePages)
+  //       setSelectedIndex(matchingPage.id)
 
-      // 遷移処理
-      } else if (visiblePages.length !== 0) {
-        setSelectedIndex(matchingPage.id)
-      }
-    }
-  }, [router, selectedIndex, visiblePages])
+  //     // 遷移処理
+  //     } else if (visiblePages.length !== 0) {
+  //       setSelectedIndex(matchingPage.id)
+  //     }
+  //   }
+  // }, [router, selectedIndex, visiblePages])
 
   return (
     <ThemeProvider theme={theme}>
