@@ -28,13 +28,11 @@ export default function Post({ blog }: Props) {
   }
 
   return (
-    <>
-      <BaseHead title={blog.title} />
-      <div style={{ width: '90%', margin: '0 auto' }}>
+    <div style={{ width: '90%', margin: '0 auto' }}>
+        <BaseHead title={blog.title} />
         <h1>{blog.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: blog.body }}></div>
       </div>
-    </>
   )
 }
 
