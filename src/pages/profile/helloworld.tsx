@@ -1,4 +1,4 @@
-import Typewriter from 'typewriter-effect'
+import Typewriter from 'typewriter-effect/dist/core';
 import styles from '../../styles/profile/helloworld.module.css'
 import { Stack } from '@mui/system'
 import { asciiArt, helloWorld } from '../../const/asciiArt'
@@ -35,7 +35,7 @@ export default function Helloworld() {
         {/* 遅延import表示用 */}
         {typeFlag && (
           <Typewriter
-            onInit={(typewriter) => {
+            onInit={(typewriter:any) => {
               typewriter
                 .changeDelay(40)
                 .typeString(
@@ -55,7 +55,7 @@ export default function Helloworld() {
             }}></Typewriter>
         )}
         <Typewriter
-          onInit={(typewriter) => {
+          onInit={(typewriter:any) => {
             typewriter
               .changeDelay(40)
               .typeString(

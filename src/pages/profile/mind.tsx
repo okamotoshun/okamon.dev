@@ -1,6 +1,6 @@
 import { BaseHead } from '@/components/BaseHead'
 import { useState } from 'react'
-import { BsFillArrowDownRightCircleFill } from 'react-icons/bs'
+import { BsFillArrowDownRightCircleFill } from 'react-icons/bs/'
 import { TagCloud } from 'react-tagcloud'
 import styles from '../../styles/profile/mind.module.css'
 const data = [
