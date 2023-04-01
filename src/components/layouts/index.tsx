@@ -68,23 +68,17 @@ export default function Layout({ children }: any) {
   const [selectedIndex, setSelectedIndex] = useState('0')
   const [visiblePages, setVisiblePages] = useState<Page[]>([])
 
-const [seachFlag, setSeachFlag] = useState(false)
-const [expanded, setExpanded] = useState(!isMobile)
-const [sizes, setSizes] = useState([250, 'auto'])
+  const [seachFlag, setSeachFlag] = useState(false)
+  const [expanded, setExpanded] = useState(true)
+  const [sizes, setSizes] = useState([250, 'auto'])
 
-useEffect(() => {
-  if (isMobile) {
-    setExpanded(false)
-  }
-}, [])
+  useEffect(() => {
+    setSizes([expanded ? 250 : 0, 'auto'])
+  }, [expanded])
 
-useEffect(() => {
-  setSizes([expanded ? 250 : 0, 'auto'])
-}, [expanded])
-
-useEffect(() => {
-  setExpanded(sizes[0] > 0)
-}, [sizes])
+  useEffect(() => {
+    setExpanded(sizes[0] > 0)
+  }, [sizes])
 
   useEffect(() => {
     const { slug, category } = router.query
@@ -106,9 +100,12 @@ useEffect(() => {
         setVisiblePages(newVisiblePages)
         setSelectedIndex(matchingPage.id)
 
-      // 遷移処理
+        // 遷移処理
       } else if (visiblePages.length !== 0) {
         setSelectedIndex(matchingPage.id)
+      }
+      if (isMobile) {
+        setExpanded(false)
       }
     }
   }, [router, selectedIndex, visiblePages])
