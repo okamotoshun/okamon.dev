@@ -5,9 +5,10 @@ import { FC } from 'react'
 type Props = {
   title: string
   description?: string
+  ogImage?: string
 }
 
-export const BaseHead: FC<Props> = ({ title, description }) => {
+export const BaseHead: FC<Props> = ({ title, description, ogImage = 'https://okamon.dev/image/okamon.png' }) => {
   const pathname = usePathname()
   return (
     <Head>
@@ -21,6 +22,9 @@ export const BaseHead: FC<Props> = ({ title, description }) => {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
+      {ogImage && <meta property="og:image" content={ogImage} />}
+      {/* <meta property="og:image:width" content="300" />
+      <meta property="og:image:height" content="300" /> */}
       <meta property="twitter:card" content="summary" />
     </Head>
   )
