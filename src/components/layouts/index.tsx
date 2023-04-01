@@ -81,6 +81,8 @@ export default function Layout({ children }: any) {
   }, [sizes])
 
   useEffect(() => {
+    console.log(12345)
+
     const { slug, category } = router.query
     const matchingPage =
       slug && category

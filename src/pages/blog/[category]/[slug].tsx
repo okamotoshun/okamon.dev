@@ -3,7 +3,8 @@ import { client } from 'libs/client'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { load } from 'cheerio' // cheerioの直接参照は非推奨だったため、loadをimport
-import hljs from 'highlight.js/lib/core'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/vs2015.css'
 import { BaseHead } from '@/components/BaseHead'
 type Blog = {
   title: string
@@ -17,10 +18,9 @@ type Params = {
 
 type Props = {
   blog: Blog
-  highlightedBody: any
 }
 
-export default function Post({ blog, highlightedBody }: Props) {
+export default function Post({ blog }: Props) {
   const router = useRouter()
 
   if (router.isFallback) {
@@ -32,7 +32,7 @@ export default function Post({ blog, highlightedBody }: Props) {
       <BaseHead title={blog.title} />
       <div style={{ width: '90%', margin: '0 auto' }}>
         <h1>{blog.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: highlightedBody }}></div>
+        <div dangerouslySetInnerHTML={{ __html: blog.body }}></div>
       </div>
     </>
   )
@@ -72,11 +72,11 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({ params }) 
       $(elm).html(result.value)
       $(elm).addClass('hljs')
     })
+    data.body = $.html()
 
     return {
       props: {
         blog: data,
-        highlightedBody: $.html(),
       },
     }
   } catch (error) {
