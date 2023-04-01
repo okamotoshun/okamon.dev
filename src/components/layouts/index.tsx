@@ -60,11 +60,7 @@ const getItems = (pages: any) => {
 const blogItems = getItems(blogPages)
 const profileItems = getItems(profilePages)
 
-console.log(blogItems)
-console.log(profileItems)
-
 const allPages = [...blogItems, ...profileItems]
-console.log(allPages)
 
 export default function Layout({ children }: any) {
   const router = useRouter()
