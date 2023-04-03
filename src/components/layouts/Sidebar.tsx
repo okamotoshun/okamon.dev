@@ -3,7 +3,6 @@ import { links } from '../../const/links'
 import Link from 'next/link'
 import { Box, Paper, Tooltip } from '@mui/material'
 import { VscFiles, VscSettingsGear, VscSearch } from 'react-icons/vsc'
-import { BiGitBranch } from 'react-icons/bi'
 import { sideBarHeight } from '../../const/heightSetting'
 
 interface Props {
