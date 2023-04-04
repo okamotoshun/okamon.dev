@@ -80,27 +80,21 @@ export const FileButtons = ({
             onClick={(e) => {
               e.stopPropagation()
               const pageLength = visiblePages.length
+
+              const newVisiblePages = [...visiblePages]
+              newVisiblePages.splice(index, 1)
+
               if (pageLength === 1) {
                 console.log(pageLength)
                 router.push('/')
-                const newVisiblePages = [...visiblePages]
-                newVisiblePages.splice(index, 1)
                 setVisiblePages(newVisiblePages)
                 setSelectedIndex('-1')
               } else if (pageLength === index + 1) {
-                const newVisiblePages = [...visiblePages]
-                newVisiblePages.splice(index, 1)
-                setVisiblePages(newVisiblePages)
-                // setSelectedIndex(newVisiblePages[index - 1].id)
                 router.push(newVisiblePages[index - 1].route)
               } else {
-                const newVisiblePages = [...visiblePages]
-                newVisiblePages.splice(index, 1)
-                setVisiblePages(newVisiblePages)
-                // setSelectedIndex(newVisiblePages[index].id)
                 router.push(newVisiblePages[index].route)
-                // setSelectedIndex(visiblePages[index].id)
               }
+              setVisiblePages(newVisiblePages)
             }}>
             <VscChromeClose />
           </Box>
