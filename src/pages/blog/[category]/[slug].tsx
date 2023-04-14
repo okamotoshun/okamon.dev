@@ -6,6 +6,7 @@ import { load } from 'cheerio' // cheerioの直接参照は非推奨だったた
 import hljs from 'highlight.js'
 import 'highlight.js/styles/vs2015.css'
 import { BaseHead } from '@/components/BaseHead'
+import { useEffect } from 'react'
 type Blog = {
   title: string
   body: string
@@ -22,17 +23,23 @@ type Props = {
 
 export default function Post({ blog }: Props) {
   const router = useRouter()
+  useEffect(() => {
+    const content = document.getElementById('content')
+    if (content) {
+      content.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [router])
 
   if (router.isFallback) {
     return <div>Loading...</div>
   }
 
   return (
-    <div style={{ width: '90%', margin: '0 auto' }}>
-        <BaseHead title={blog.title} />
-        <h1>{blog.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: blog.body }}></div>
-      </div>
+    <div id="content" style={{ width: '90%', margin: '0 auto' }}>
+      <BaseHead title={blog.title} />
+      <h1>{blog.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: blog.body }}></div>
+    </div>
   )
 }
 
