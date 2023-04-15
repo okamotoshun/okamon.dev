@@ -3,7 +3,7 @@ const axios = require('axios').default
 require('dotenv').config()
 
 const getMicroCMSdata = async () => {
-  const url = `https://okamon.microcms.io/api/v1/blog`
+  const url = `https://okamon.microcms.io/api/v1/blog?limit=100`
   const apiKey = process.env.API_KEY
   const headers = { 'X-API-KEY': apiKey }
 
