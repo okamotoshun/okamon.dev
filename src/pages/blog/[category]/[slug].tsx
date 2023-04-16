@@ -69,7 +69,6 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({ params }) 
       contentId: `${slug}`,
       queries: { fields: 'title,body' },
     })
-    console.log(data)
     const $ = load(data.body)
 
     $('pre code').each((_, elm) => {
