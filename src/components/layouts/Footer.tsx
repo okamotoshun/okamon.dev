@@ -4,13 +4,13 @@ import { VscRemote, VscError, VscWarning, VscBell, VscFeedback, VscCheckAll } fr
 import { IoIosGitBranch } from 'react-icons/io'
 import { BiCodeCurly } from 'react-icons/bi'
 
+const fontSize = '0.8rem'
+const iconSize = '1rem'
+const bgBlue = '#3279CB'
+const bgBlueHover = '#1f8ad2'
+const bgGreen = '#2E8461'
+const bgGreenHover = '#329171'
 export const Footer = () => {
-  const fontSize = '0.8rem'
-  const iconSize = '1rem'
-  const bgBlue = '#3279CB'
-  const bgBlueHover = '#1f8ad2'
-  const bgGreen = '#2E8461'
-  const bgGreenHover = '#329171'
   return (
     <Box component={Paper} square elevation={0} sx={{ height: footerHeight, color: 'white' }} display="flex">
       {/* リモート機能表示のみ */}

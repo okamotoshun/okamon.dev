@@ -19,12 +19,7 @@ interface Props {
   setVisiblePages: React.Dispatch<React.SetStateAction<Page[]>>
 }
 
-export const FileButtons = ({
-  selectedIndex,
-  setSelectedIndex,
-  visiblePages,
-  setVisiblePages,
-}: Props) => {
+export const FileButtons = ({ selectedIndex, setSelectedIndex, visiblePages, setVisiblePages }: Props) => {
   const router = useRouter()
 
   const renderPageButton = (id: string, name: string, route: string, category: string, index: number) => {

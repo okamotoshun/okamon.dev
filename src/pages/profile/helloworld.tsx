@@ -34,7 +34,7 @@ export default function Helloworld() {
       <div className={styles.lines}>{numberLines}</div>
       <pre className={styles.code}>
         <p style={{ color: colors.green }}>{helloWorld}</p>
-        {/* 遅延import表示用 */}
+        {/* 遅延表示用 */}
         {typeFlag && (
           <Typewriter
             onInit={(typewriter) => {
