@@ -13,6 +13,7 @@ const data = [
   { value: '寝れば忘れる', count: 15 },
   { value: '量より質', count: 17 },
   { value: '食べるの大好き', count: 15 },
+  { value: '元バックパッカー', count: 15 },
   { value: '秋', count: 15 },
   // 好きな食べ物
   { value: '焼き鳥', count: 16 },
@@ -22,11 +23,11 @@ const data = [
   { value: '白子ポン酢', count: 16 },
   { value: 'ペペロンチーノ', count: 16 },
   { value: 'ラム肉', count: 16 },
-  { value: 'ハーゲンダッツ', count: 16 },
   // 趣味
   { value: 'サッカー', count: 17 },
   { value: 'フットサル', count: 17 },
   { value: 'チェキフィルム', count: 16 },
+  { value: 'ウイニングイレブン', count: 16 },
   { value: 'Netflix', count: 17 },
   { value: 'サウナ', count: 17 },
   { value: 'Pokémon', count: 18 },
@@ -49,6 +50,8 @@ const data = [
   { value: 'キングダム', count: 15 },
   { value: 'SLAM DUNK', count: 16 },
   { value: 'HUNTER×HUNTER', count: 15 },
+  { value: 'ブルーロック', count: 15 },
+  { value: 'コナン', count: 15 },
   // その他
   { value: '股抜き得意', count: 14 },
 ]
