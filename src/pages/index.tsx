@@ -1,4 +1,4 @@
-import styles from '../styles/profile/Home.module.css'
+import styles from '@/styles/profile/Home.module.css'
 import Image from 'next/image'
 import { Box, Grid, Stack, Typography } from '@mui/material'
 import okamon from '../../public/image/okamon.png'

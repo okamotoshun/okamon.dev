@@ -1,6 +1,6 @@
 const Typewriter = dynamic(() => import('typewriter-effect'))
 // import Typewriter from 'typewriter-effect'
-import styles from '../../styles/profile/helloworld.module.css'
+import styles from '@/styles/profile/helloworld.module.css'
 import { Stack } from '@mui/system'
 import { asciiArt, helloWorld } from '../../const/asciiArt'
 import { useState } from 'react'

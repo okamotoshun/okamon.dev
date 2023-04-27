@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import 'react-step-progress-bar/styles.css'
 import { ProgressBar, Step } from 'react-step-progress-bar'
-import styles from '../../styles/profile/history.module.css'
+import styles from '@/styles/profile/history.module.css'
 import { BaseHead } from '@/components/BaseHead'
 
 const textList = [
