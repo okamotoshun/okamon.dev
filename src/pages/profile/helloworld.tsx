@@ -132,15 +132,15 @@ export default function Helloworld() {
                   '.' +
                   `<span style="color: ${colors.lightYellow};">slee</span>`,
               )
-              .pauseFor(500)
+              .pauseFor(300)
               .typeString(`<span style="color: ${colors.lightYellow};">z</span>`)
-              .pauseFor(600)
+              .pauseFor(300)
               .typeString(`<span style="color: ${colors.lightYellow};">z</span>`)
-              .pauseFor(700)
+              .pauseFor(300)
               .typeString(`<span style="color: ${colors.lightYellow};">z</span>`)
-              .pauseFor(800)
+              .pauseFor(300)
               .typeString(`<span style="color: ${colors.lightYellow};">zZZZZZZZZZZZ</span>`)
-              .pauseFor(1000)
+              .pauseFor(500)
               .changeDeleteSpeed(50)
               .deleteChars(15)
               .typeString(
