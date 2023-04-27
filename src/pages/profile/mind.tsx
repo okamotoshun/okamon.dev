@@ -4,7 +4,7 @@ import { BsFillArrowDownRightCircleFill } from 'react-icons/bs/'
 import { TagCloud } from 'react-tagcloud'
 import styles from '@/styles/profile/mind.module.css'
 const data = [
-  // 性格
+  // 性格&思考
   { value: '犬派', count: 16 },
   { value: 'B型', count: 17 },
   { value: '楽天家', count: 18 },
@@ -22,13 +22,17 @@ const data = [
   { value: 'レバーパテ', count: 16 },
   { value: '白子ポン酢', count: 16 },
   { value: 'ペペロンチーノ', count: 16 },
-  { value: 'ラム肉', count: 16 },
+  { value: 'ラムチョップ', count: 16 },
+  { value: '生牡蠣', count: 16 },
+  { value: '生ハム', count: 16 },
+  { value: '家系ラーメン', count: 16 },
   // 趣味
   { value: 'サッカー', count: 17 },
   { value: 'フットサル', count: 17 },
   { value: 'チェキフィルム', count: 16 },
   { value: 'ウイニングイレブン', count: 16 },
   { value: 'Netflix', count: 17 },
+  { value: 'アマプラ', count: 17 },
   { value: 'サウナ', count: 17 },
   { value: 'Pokémon', count: 18 },
   { value: 'ポケカ', count: 17 },
@@ -45,13 +49,17 @@ const data = [
   { value: 'BUMP OF CHICKEN', count: 16 },
   { value: 'King Gnu', count: 17 },
   { value: 'Mr.Children', count: 16 },
-  // 好きな漫画
+  // 好きな漫画&アニメ
   { value: 'ONE PIECE', count: 16 },
   { value: 'キングダム', count: 15 },
   { value: 'SLAM DUNK', count: 16 },
   { value: 'HUNTER×HUNTER', count: 15 },
   { value: 'ブルーロック', count: 15 },
   { value: 'コナン', count: 15 },
+  { value: '金色のガッシュベル', count: 15 },
+  { value: 'NARUTO', count: 15 },
+  { value: '鋼の錬金術師', count: 15 },
+  { value: 'DRAGON BALL', count: 15 },
   // その他
   { value: '股抜き得意', count: 14 },
 ]
