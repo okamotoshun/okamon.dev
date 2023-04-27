@@ -48,7 +48,7 @@ export default function Helloworld() {
                     `<span style="color: ${colors.pink}"> from </span>` +
                     `<span style="color: ${colors.orange}">'@/House/wifey'</span><br/>`,
                 )
-                // カーソルなくす処理
+                // カーソルなくす処理(後々なんとかしたい。。)
                 .pasteString(
                   '                                                                                                                                                                                                                                                                           ',
                   null,
