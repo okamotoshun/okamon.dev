@@ -62,6 +62,7 @@ const data = [
   { value: 'DRAGON BALL', count: 15 },
   // その他
   { value: '股抜き得意', count: 14 },
+  { value: 'New Balance', count: 14 },
 ]
 const customRenderer = (tag: any, size: any, color: any) => (
   <span
