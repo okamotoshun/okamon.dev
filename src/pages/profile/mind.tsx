@@ -58,6 +58,9 @@ const data = [
   { value: 'コナン', count: 15 },
   { value: '金色のガッシュベル', count: 15 },
   { value: 'NARUTO', count: 15 },
+  { value: 'アオアシ', count: 15 },
+  { value: 'バクマン', count: 15 },
+  { value: 'ジョジョ5部', count: 15 },
   { value: '鋼の錬金術師', count: 15 },
   { value: 'DRAGON BALL', count: 15 },
   // その他
