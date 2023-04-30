@@ -17,6 +17,7 @@ const colors = {
   orange: '#D78E74',
   green: '#65964E',
 }
+const emptyString = ' '.repeat(200); // 空の文字列を生成する
 const lines = [...Array(40)].map((_, i) => i + 1)
 const numberLines = lines.map((line) => {
   return (
@@ -49,10 +50,7 @@ export default function Helloworld() {
                     `<span style="color: ${colors.orange}">'@/House/wifey'</span><br/>`,
                 )
                 // カーソルなくす処理(後々なんとかしたい。。)
-                .pasteString(
-                  '                                                                                                                                                                                                                                                                           ',
-                  null,
-                )
+                .pasteString(emptyString, null) // 空の文字列を挿入する
                 .start()
             }}></Typewriter>
         )}
