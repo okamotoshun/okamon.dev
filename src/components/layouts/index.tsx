@@ -33,19 +33,20 @@ interface Page {
 
 const getItems = (pages: any) => {
   const items: Page[] = []
+
   pages.forEach((page: Item) => {
+    const category = page.category || ''
+
     if (page.items) {
       page.items.forEach((item: Page) => {
-        const category = item.category || page.category
         items.push({
           id: item.id,
           name: item.name,
-          category: category,
+          category: item.category || category,
           route: item.route,
         })
       })
     } else {
-      const category = page.category
       items.push({
         id: page.id,
         name: page.name,
@@ -54,13 +55,11 @@ const getItems = (pages: any) => {
       })
     }
   })
+
   return items
 }
 
-const blogItems = getItems(blogPages)
-const profileItems = getItems(profilePages)
-
-const allPages = [...blogItems, ...profileItems]
+const allPages = [...getItems(blogPages), ...getItems(profilePages)]
 
 export default function Layout({ children }: any) {
   const router = useRouter()
@@ -81,34 +80,36 @@ export default function Layout({ children }: any) {
   }, [sizes])
 
   useEffect(() => {
-    const { slug, category } = router.query
-    const matchingPage =
-      slug && category
-        ? allPages.find((page) => `/blog/${category}/${slug}` === page.route)
-        : allPages.find((page) => page.route === router.pathname)
-    if (matchingPage) {
-      // リロード処理
-      if (visiblePages.length === 0 && selectedIndex === '0' && router.pathname !== '/') {
-        const newVisiblePages = [
-          {
-            id: matchingPage.id,
-            name: matchingPage.name,
-            route: matchingPage.route,
-            category: matchingPage.category,
-          },
-        ]
-        setVisiblePages(newVisiblePages)
-        setSelectedIndex(matchingPage.id)
+    const path = router.asPath
 
-        // 遷移処理
-      } else if (visiblePages.length !== 0) {
-        setSelectedIndex(matchingPage.id)
-      }
-      if (isMobile) {
-        setExpanded(false)
-      }
+    const matchingPage = allPages.find((page) => path === page.route)
+
+    if (!matchingPage) {
+      return
     }
-  }, [router, selectedIndex, visiblePages])
+
+    const newVisiblePages = [
+      {
+        id: matchingPage.id,
+        name: matchingPage.name,
+        route: matchingPage.route,
+        category: matchingPage.category,
+      },
+    ]
+
+    if (visiblePages.length === 0 && selectedIndex === '0' && router.pathname !== '/') {
+      setVisiblePages(newVisiblePages)
+      setSelectedIndex(matchingPage.id)
+    } else if (visiblePages.length !== 0) {
+      setSelectedIndex(matchingPage.id)
+    }
+
+    if (isMobile) {
+      setExpanded(false)
+    }
+    return () => {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.asPath])
 
   return (
     <ThemeProvider theme={theme}>
