@@ -3,8 +3,9 @@ import { client } from 'libs/client'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { load } from 'cheerio' // cheerioの直接参照は非推奨だったため、loadをimport
-import hljs from 'highlight.js'
+import hljs from 'highlight.js/lib/core'
 import 'highlight.js/styles/vs2015.css'
+
 import { BaseHead } from '@/components/BaseHead'
 import { useEffect } from 'react'
 type Blog = {
