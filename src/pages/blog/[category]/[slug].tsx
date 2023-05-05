@@ -4,7 +4,14 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { load } from 'cheerio' // cheerioの直接参照は非推奨だったため、loadをimport
 import hljs from 'highlight.js/lib/core'
-import 'highlight.js/styles/vs2015.css'
+// import 'highlight.js/styles/vs2015.css'
+import javascript from 'highlight.js/lib/languages/javascript'
+import python from 'highlight.js/lib/languages/python'
+import xml from 'highlight.js/lib/languages/xml'
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('python', python)
+hljs.registerLanguage('xml', xml)
+import 'highlight.js/styles/github.css'
 
 import { BaseHead } from '@/components/BaseHead'
 import { useEffect } from 'react'
