@@ -14,6 +14,7 @@ const data = [
   { value: '量より質', count: 17 },
   { value: '食べるの大好き', count: 15 },
   { value: '元バックパッカー', count: 15 },
+  { value: '子供好き', count: 15 },
   { value: '秋', count: 15 },
   // 好きな食べ物
   { value: '焼き鳥', count: 16 },
