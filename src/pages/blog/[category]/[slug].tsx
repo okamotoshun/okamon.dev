@@ -14,7 +14,7 @@ hljs.registerLanguage('python', python)
 hljs.registerLanguage('xml', xml)
 
 import { BaseHead } from '@/components/BaseHead'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 type Blog = {
   title: string
   body: string
@@ -38,34 +38,11 @@ export default function Post({ blog }: Props) {
     }
   }, [router])
 
-  const [highlighted, setHighlighted] = useState(false) // ハイライトが完了したかどうかを追跡する状態
-
-  useEffect(() => {
-    if (contentRef.current && !highlighted) {
-      const highlightTimeout = setTimeout(() => {
-        // ハイライト処理を実行するコード
-        // 以下は、ハイライト処理の例です
-        const codeBlocks = contentRef.current.querySelectorAll('pre code')
-        codeBlocks.forEach((codeBlock) => {
-          const result = hljs.highlightAuto(codeBlock.innerText)
-          codeBlock.innerHTML = result.value
-          codeBlock.classList.add('hljs')
-        })
-
-        setHighlighted(true) // ハイライトが完了したことを設定
-      }, 0) // 適切な遅延時間を設定してください
-
-      return () => {
-        clearTimeout(highlightTimeout) // コンポーネントがアンマウントされた場合にタイムアウトをクリア
-      }
-    }
-  }, [highlighted])
-
   return (
     <div className={styles.layout}>
       <BaseHead title={blog.title} />
-      <h1 ref={contentRef}>{blog.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: blog.body }}></div>
+      <h1>{blog.title}</h1>
+      <div ref={contentRef} dangerouslySetInnerHTML={{ __html: blog.body }}></div>
     </div>
   )
 }
