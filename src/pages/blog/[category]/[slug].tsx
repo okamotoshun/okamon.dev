@@ -38,6 +38,10 @@ export default function Post({ blog }: Props) {
     }
   }, [router])
 
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div className={styles.layout}>
       <BaseHead title={blog.title} />
