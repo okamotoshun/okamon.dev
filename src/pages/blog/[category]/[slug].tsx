@@ -8,12 +8,13 @@ import 'highlight.js/styles/vs2015.css'
 import javascript from 'highlight.js/lib/languages/javascript'
 import python from 'highlight.js/lib/languages/python'
 import xml from 'highlight.js/lib/languages/xml'
+import styles from '@/styles/category/slug.module.css'
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('python', python)
 hljs.registerLanguage('xml', xml)
 
 import { BaseHead } from '@/components/BaseHead'
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 type Blog = {
   title: string
   body: string
@@ -27,24 +28,43 @@ type Params = {
 type Props = {
   blog: Blog
 }
-
 export default function Post({ blog }: Props) {
+  const contentRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
+
   useEffect(() => {
-    const content = document.getElementById('content')
-    if (content) {
-      content.scrollIntoView({ behavior: 'smooth' })
+    if (contentRef.current) {
+      contentRef.current.scrollIntoView({ behavior: 'smooth' })
     }
   }, [router])
 
-  if (router.isFallback) {
-    return <div>Loading...</div>
-  }
+  const [highlighted, setHighlighted] = useState(false) // ハイライトが完了したかどうかを追跡する状態
+
+  useEffect(() => {
+    if (contentRef.current && !highlighted) {
+      const highlightTimeout = setTimeout(() => {
+        // ハイライト処理を実行するコード
+        // 以下は、ハイライト処理の例です
+        const codeBlocks = contentRef.current.querySelectorAll('pre code')
+        codeBlocks.forEach((codeBlock) => {
+          const result = hljs.highlightAuto(codeBlock.innerText)
+          codeBlock.innerHTML = result.value
+          codeBlock.classList.add('hljs')
+        })
+
+        setHighlighted(true) // ハイライトが完了したことを設定
+      }, 0) // 適切な遅延時間を設定してください
+
+      return () => {
+        clearTimeout(highlightTimeout) // コンポーネントがアンマウントされた場合にタイムアウトをクリア
+      }
+    }
+  }, [highlighted])
 
   return (
-    <div id="content" style={{ width: '90%', margin: '0 auto' }}>
+    <div className={styles.layout}>
       <BaseHead title={blog.title} />
-      <h1>{blog.title}</h1>
+      <h1 ref={contentRef}>{blog.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: blog.body }}></div>
     </div>
   )
