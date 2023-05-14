@@ -50,7 +50,7 @@ export const DocumentTree = ({
     <TreeView
       aria-label="file system navigator"
       sx={{ minWidth: 220 }}
-      defaultExpanded={[]}
+      defaultExpanded={['-1', '-2']}
       style={{ overflowX: 'clip' }}>
       {/* profileページ */}
       <TreeItem
