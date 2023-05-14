@@ -45,8 +45,8 @@ export default function Post({ blog }: Props) {
   return (
     <div className={styles.layout}>
       <BaseHead title={blog.title} />
-      <h1>{blog.title}</h1>
-      <div ref={contentRef} dangerouslySetInnerHTML={{ __html: blog.body }}></div>
+      <h1 ref={contentRef}>{blog.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: blog.body }}></div>
     </div>
   )
 }
