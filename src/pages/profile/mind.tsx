@@ -26,7 +26,7 @@ const data = [
   { value: 'ラムチョップ', count: 16 },
   { value: '生牡蠣', count: 16 },
   { value: '生ハム', count: 16 },
-  { value: '家系ラーメン', count: 16 },
+  { value: '硬め濃いめ多め', count: 16 },
   // 趣味
   { value: 'サッカー', count: 17 },
   { value: 'フットサル', count: 17 },
