@@ -17,6 +17,7 @@ const data = [
   { value: '子供好き', count: 15 },
   { value: '秋', count: 15 },
   { value: '千葉好き', count: 15 },
+  { value: '戸建て派', count: 15 },
   // 好きな食べ物
   { value: '焼き鳥', count: 16 },
   { value: '蟹味噌', count: 16 },
